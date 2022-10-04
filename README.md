@@ -1,2 +1,2 @@
 # zenTime
-A time tracking of the hours necessary for an Associates license.
+A time tracking Blazor application of the hours necessary for an Associates license.

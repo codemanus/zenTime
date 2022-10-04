@@ -1,0 +1,98 @@
+@page "/Hours"
+@using Microsoft.AspNetCore.Components
+<PageTitle>Hours</PageTitle>
+
+<MudPaper Class="pa-8 ma-2" Elevation="3">
+    <MudText Typo="Typo.h4" GutterBottom="true">Supervisor Time Tracker</MudText>
+    <MudDateRangePicker @ref="_picker" Label="Week of the services and supervision" @bind-DateRange="_dateRange" AutoClose="@_autoClose">
+        <PickerActions>
+            <MudButton Class="mr-auto align-self-start" OnClick="@(() => _picker.Clear())">Clear</MudButton>
+            <MudButton OnClick="@(() => _picker.Close(false))">Cancel</MudButton>
+            <MudButton Color="Color.Primary" OnClick="@(() => _picker.Close())">Ok</MudButton>
+        </PickerActions>
+    </MudDateRangePicker>
+    <MudSwitch @bind-Checked="@_autoClose" Color="Color.Secondary">Auto Close Date Range</MudSwitch>
+</MudPaper>
+
+<MudPaper Class="pa-8 ma-2" Elevation="3">
+    <MudText Typo="Typo.h5" Class="py-6" GutterBottom="true">Direct Contact Hours</MudText>
+    <MudGrid Justify="Justify.FlexStart">
+        <MudStack Row="true" AlignItems="AlignItems.Center">
+            <MudNumericField Class="py-6 px-3" @bind-Value="@DirectContactHoursModel.IndvCouns" Label="Individual Counseling" Min="0.0" Variant="Variant.Filled"/>
+            <MudNumericField Class="py-6 px-3" @bind-Value="@DirectContactHoursModel.GroupCouns" Label="Group Counseling" Min="0.0" Variant="Variant.Filled"/>
+            <MudNumericField Class="py-6 px-3" @bind-Value="@DirectContactHoursModel.CoupleMarital" Label="Couple/Marital Counseling" Min="0.0" Variant="Variant.Filled"/>
+            <MudNumericField Class="py-6 px-3" @bind-Value="@DirectContactHoursModel.FamilyCouns" Label="Family Counseling" Min="0.0" Variant="Variant.Filled"/>
+        </MudStack>
+        <MudStack Row="true" AlignItems="AlignItems.Center">
+            <MudNumericField Class="py-6 px-3" @bind-Value="@DirectContactHoursModel.CFTM" Label="CFTM Counseling" Min="0.0" Variant="Variant.Filled"/>
+            <MudNumericField Class="py-6 px-3" @bind-Value="@DirectContactHoursModel.OtherClientContact" Label="Other Client Contact" Min="0.0" Variant="Variant.Filled"/>
+            <MudNumericField Class="py-6 px-3" @bind-Value="@DirectContactHoursModel.TestAssessment" Label="Test and Assesment" Min="0.0" Variant="Variant.Filled"/>
+            <MudNumericField Class="py-6 px-3" @bind-Value="@DirectContactHoursModel.Intakes" Label="Intakes" Min="0.0" Variant="Variant.Filled"/>
+        </MudStack>
+    </MudGrid>
+</MudPaper>
+
+<MudPaper Class="pa-8 ma-2" Elevation="3">
+    <MudText Typo="Typo.h5" Class="py-6" GutterBottom="true">Non-Direct Contact Hours</MudText>
+    <MudGrid Justify="Justify.FlexStart">
+        <MudStack Row="true" AlignItems="AlignItems.Center">
+            <MudNumericField Class="py-6 px-3" @bind-Value="@CategoryHoursModel.MilieuCouns" Label="Milieu Counseling/Obs" Min="0.0" Variant="Variant.Filled"/>
+            <MudNumericField Class="py-6 px-3" @bind-Value="@CategoryHoursModel.StaffMeetings" Label="Staff Meetings" Min="0.0" Variant="Variant.Filled"/>
+            <MudNumericField Class="py-6 px-3" @bind-Value="@CategoryHoursModel.Education" Label="Education" Min="0.0" Variant="Variant.Filled"/>
+            <MudNumericField Class="py-6 px-3" @bind-Value="@CategoryHoursModel.Admin" Label="Administrative" Min="0.0" Variant="Variant.Filled"/>
+        </MudStack>
+    </MudGrid>
+</MudPaper>
+
+<MudPaper Class="pa-8 ma-2" Elevation="3">
+    <MudText Typo="Typo.h5" Class="py-6" GutterBottom="true">Supervision/Consultation with Supervisor</MudText>
+    <MudGrid>
+        <MudStack Row="true" AlignItems="AlignItems.Center">
+            <MudNumericField Class="py-6 px-3" @bind-Value="@SupervisionConsultsModel.Individual" Label="Individual Counseling" Min="0.0" Variant="Variant.Filled"/>
+            <MudNumericField Class="py-6 px-3" @bind-Value="@SupervisionConsultsModel.Group" Label="Group Counseling" Min="0.0" Variant="Variant.Filled"/>
+        </MudStack>
+    </MudGrid>
+</MudPaper>
+
+<MudPaper Class="pa-8 ma-2" Elevation="3">
+    <MudButton Class="" Disabled="@_processing" OnClick="ProcessSomething" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Save" IconColor="Color.Secondary" Size="Size.Large">
+        @if (_processing)
+        {
+            <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true"/>
+            <MudText Class="ms-2">Saving</MudText>
+        }
+        else
+        {
+            <MudText>Save</MudText>
+        }
+    </MudButton>
+</MudPaper>
+
+@if (_savedDateRange != null)
+{
+    <MudPaper Class="pa-8 ma-2" Elevation="3">
+        <MudText>
+            @_savedDateRange
+        </MudText>
+        <MudText>Individual Supervision Consults added: @SupervisionConsultsModel.Individual</MudText>
+        <MudText>Group Supervision Consults added: @SupervisionConsultsModel.Group</MudText>
+    </MudPaper>
+}
+
+@code {
+    private MudDateRangePicker _picker;
+    private bool _autoClose;
+    private bool _processing;
+    private DateRange _dateRange = new(DateTime.Now.Date, DateTime.Now.AddDays(5).Date);
+    private string? _savedDateRange;
+
+    async Task ProcessSomething()
+    {
+        _processing = true;
+
+        _savedDateRange = _dateRange.ToIsoDateString();
+        await Task.Delay(2000).ConfigureAwait(false);
+        _processing = false;
+    }
+
+}

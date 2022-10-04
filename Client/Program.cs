@@ -1,3 +1,4 @@
+global using zenTime.Shared;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using zenTime.Client;
