@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Hosting.StaticWebAssets;
+﻿global using zenTime.Server.Data;
+global using zenTime.Shared;
+using Microsoft.AspNetCore.Hosting.StaticWebAssets;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
-using zenTime.Server.Data;
+using zenTime.Server.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,9 @@ builder.Services.AddDbContext<DataContext>(options =>
 });
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+
+// Add scoped services
+builder.Services.AddScoped<IHoursService, HoursService>();
 
 var app = builder.Build();
 
