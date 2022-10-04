@@ -12,8 +12,9 @@
                              ToggledIcon="@Icons.Filled.DarkMode" ToggledColor="@Color.Primary"/>
     </MudAppBar>
     <MudDrawer @bind-Open="_drawerOpen" Elevation="1">
-        <MudDrawerHeader>
-            <MudText Typo="Typo.h6">zenTime</MudText>
+        <MudDrawerHeader >
+            <MudIcon Icon="@Icons.Material.Filled.ViewTimeline" Color="Color.Primary"/>
+            <MudText Class="pt-1" Typo="Typo.h6" Color="Color.Secondary">ZenTime</MudText>
         </MudDrawerHeader>
         <NavMenu/>
     </MudDrawer>

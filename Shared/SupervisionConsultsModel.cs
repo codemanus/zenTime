@@ -2,6 +2,7 @@ namespace zenTime.Shared;
 
 public class SupervisionConsultsModel
 {
-    public static double Individual { get; set; }
-    public static double Group { get; set; }
+    public int Id { get; set; }
+    public double Individual { get; set; }
+    public double Group { get; set; }
 }
