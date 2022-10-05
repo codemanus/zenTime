@@ -11,28 +11,16 @@ public class HoursService : IHoursService
         _httpClient = httpClient;
     }
 
-    public List<CategoryHoursModel> CategoryHours { get; set; } = new List<CategoryHoursModel>();
-    public List<SupervisionConsultsModel> SupervisionConsults { get; set; } = new List<SupervisionConsultsModel>();
-    public List<DirectContactHoursModel> DirectContactHours { get; set; } = new List<DirectContactHoursModel>();
+    public List<TimeTrackingModel> TimeTrackingModels { get; set; }
+    public TimeTrackingModel TrackingModel { get; set; }
 
-    public async Task GetCategoryHours()
+    public Task SetTimeHours()
     {
-        var response = await _httpClient.GetFromJsonAsync<ServiceResponse<List<CategoryHoursModel>>>("api/Hours");
-        if (response != null && response.Data != null)
-            CategoryHours = response.Data;
+        throw new NotImplementedException();
     }
 
-    public async Task GetSupervisionHours()
+    public Task GetHours()
     {
-        var response = await _httpClient.GetFromJsonAsync<ServiceResponse<List<SupervisionConsultsModel>>>("api/Hours");
-        if (response != null && response.Data != null)
-            SupervisionConsults = response.Data;
-    }
-
-    public async Task GetDirectContactHours()
-    {
-        var response = await _httpClient.GetFromJsonAsync<ServiceResponse<List<DirectContactHoursModel>>>("api/Hours");
-        if (response != null && response.Data != null)
-            DirectContactHours = response.Data;
+        throw new NotImplementedException();
     }
 }

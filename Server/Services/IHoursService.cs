@@ -1,10 +1,10 @@
+using MudBlazor;
 using zenTime.Shared;
 
 namespace zenTime.Server.Services;
 
 public interface IHoursService
 {
-    Task<ServiceResponse<List<CategoryHoursModel>>> GetCategoryHours();
-    Task<ServiceResponse<List<CategoryHoursModel>>> AddCategoryHours();
-    Task<ServiceResponse<List<CategoryHoursModel>>> UpdateCategoryHours();
+    Task<ServiceResponse<List<TimeTrackingModel>>> GetHours();
+    Task<ServiceResponse<List<TimeTrackingModel>>> SetHours();
 }

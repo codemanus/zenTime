@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using MudBlazor;
 using zenTime.Server.Services;
 using zenTime.Shared;
 
@@ -16,9 +17,16 @@ public class HoursController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<ServiceResponse<List<CategoryHoursModel>>>> GetCategoryHours()
+    public async Task<ActionResult<ServiceResponse<List<TimeTrackingModel>>>> GetHours()
     {
-        var result = await _hoursService.GetCategoryHours();
+        var result = await _hoursService.GetHours();
+        return Ok(result);
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<ServiceResponse<List<TimeTrackingModel>>>> SetHours()
+    {
+        var result = await _hoursService.SetHours();
         return Ok(result);
     }
 }

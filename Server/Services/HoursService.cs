@@ -13,22 +13,17 @@ public class HoursService : IHoursService
         _context = context;
     }
 
-    public async Task<ServiceResponse<List<CategoryHoursModel>>> GetCategoryHours()
+    public async Task<ServiceResponse<List<TimeTrackingModel>>> GetHours()
     {
-        var categories = await _context.CategoryHours
+        var timeTrack = await _context.TimeTracking
             .ToListAsync();
-        return new ServiceResponse<List<CategoryHoursModel>>
+        return new ServiceResponse<List<TimeTrackingModel>>
         {
-            Data = categories
+            Data = timeTrack
         };
     }
 
-    public Task<ServiceResponse<List<CategoryHoursModel>>> AddCategoryHours()
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<ServiceResponse<List<CategoryHoursModel>>> UpdateCategoryHours()
+    public async Task<ServiceResponse<List<TimeTrackingModel>>> SetHours()
     {
         throw new NotImplementedException();
     }
