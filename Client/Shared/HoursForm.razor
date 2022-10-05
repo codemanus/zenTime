@@ -1,0 +1,31 @@
+<MudPaper Class="pa-8 ma-2" Elevation="3">
+    <MudGrid Justify="Justify.SpaceEvenly">
+        @foreach (var cateType in Enum.GetValues(typeof(CategoryType)))
+        {
+            <MudItem xs="6">
+                <MudPaper Elevation="3" Class="d-flex flex-column align-center justify-center mud-width-full py-1">
+                    <MudNumericField FullWidth="true" Label="@cateType.ToString()" Class="py-3 px-3" Min="0.0" Variant="Variant.Filled"/>
+                </MudPaper>
+            </MudItem>
+        }
+    </MudGrid>
+</MudPaper>
+
+@code {
+
+    /*
+     * TODO:
+     * Need to disable or make hidden the both Totals fields and/if should be readonly.
+     * Need to make the Unknown field hidden.
+     * Need to make set the DisplayName of field properly.
+     */
+
+    /*
+     * TODO:
+     * Need to make the math logic to when a value is entered in, to be able to display the Totals in a different
+     * fields
+     *
+     * The Total Hours field should show the Month-to-Date hours
+     * The Daily Totals would show the hours accumulated through the week that was selected
+     */
+}

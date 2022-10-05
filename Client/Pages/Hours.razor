@@ -10,28 +10,7 @@
 
 </MudPaper>
 
-<MudPaper Class="pa-8 ma-2" Elevation="3">
-    <MudGrid>
-        <MudStack Row="true" AlignItems="AlignItems.Center">
-
-
-            @*
-            TODO:
-            Need to figure out the loop to iterate through the 
-            Hours List and get the category types to create the 
-            numericFields to dynamically get added.
-            *@
-
-            @*
-            @foreach (var hours in HoursService.TrackingModel.Hours)
-            {
-                <MudNumericField @bind-Value="@HoursService.TrackingModel.Hours" Class="py-6 px-3" Min="0.0" Variant="Variant.Filled"/>
-            }
-            *@
-
-        </MudStack>
-    </MudGrid>
-</MudPaper>
+<HoursForm/>
 
 <MudPaper Class="pa-8 ma-2" Elevation="3">
     <MudButton Class="" Disabled="@_processing" OnClick="ProcessSomething" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Save" IconColor="Color.Secondary" Size="Size.Large">
@@ -73,7 +52,5 @@
         await Task.Delay(2000).ConfigureAwait(false);
         _processing = false;
     }
-
-
 
 }

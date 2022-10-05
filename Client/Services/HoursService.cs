@@ -16,11 +16,25 @@ public class HoursService : IHoursService
 
     public Task SetTimeHours()
     {
+        /*
+         * TODO:
+         * Need to build Save logic
+         *
+         * Need to be able to bind the values that are entered from the
+         * HoursForm.razor into the model to save to the database
+         * 
+         */
+
         throw new NotImplementedException();
     }
 
     public Task GetHours()
     {
+        /*
+         * TODO:
+         * Need to build the get logic to Get the hours for the overall totals accumulated thus far
+         */
+
         throw new NotImplementedException();
     }
 }
