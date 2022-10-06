@@ -1,43 +1,47 @@
 @page "/Hours"
 @using Microsoft.AspNetCore.Components
 @inject IHoursService HoursService
+
 <PageTitle>Hours</PageTitle>
 
-<MudPaper Class="pa-8 ma-2" Elevation="3">
+<MudContainer Class="mt-16 px-8" MaxWidth="MaxWidth.False">
     <MudText Typo="Typo.h4" GutterBottom="true">Supervisor Time Tracker</MudText>
-    <MudDatePicker Label="Start Date" ShowWeekNumbers="true" @bind-Date="StartDate"/>
-    <MudDatePicker Label="End Date" ShowWeekNumbers="true" @bind-Date="EndDate"/>
-
-</MudPaper>
-
-<HoursForm/>
-
-<MudPaper Class="pa-8 ma-2" Elevation="3">
-    <MudButton Class="" Disabled="@_processing" OnClick="ProcessSomething" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Save" IconColor="Color.Secondary" Size="Size.Large">
-        @if (_processing)
-        {
-            <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true"/>
-            <MudText Class="ms-2">Saving</MudText>
-        }
-        else
-        {
-            <MudText>Save</MudText>
-        }
-    </MudButton>
-</MudPaper>
-
-@if (_savedDateRange != null)
-{
     <MudPaper Class="pa-8 ma-2" Elevation="3">
-        <MudText>
-            The Starting date of the hours collection of the week is: @StartDate
-        </MudText>
-        <MudText>
-            The Ending date of the hours collection of the week is: @EndDate
-        </MudText>
 
+        <MudDatePicker Label="Start Date" ShowWeekNumbers="true" @bind-Date="StartDate"/>
+        <MudDatePicker Label="End Date" ShowWeekNumbers="true" @bind-Date="EndDate"/>
     </MudPaper>
-}
+
+    <HoursForm/>
+
+    <MudPaper Class="pa-8 ma-2" Elevation="3">
+        <MudButton Class="" Disabled="@_processing" OnClick="ProcessSomething" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Save" IconColor="Color.Secondary" Size="Size.Large">
+            @if (_processing)
+            {
+                <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true"/>
+                <MudText Class="ms-2">Saving</MudText>
+            }
+            else
+            {
+                <MudText>Save</MudText>
+            }
+        </MudButton>
+    </MudPaper>
+
+    @if (_savedDateRange != null)
+    {
+        <MudPaper Class="pa-8 ma-2" Elevation="3">
+            <MudText>
+                The Starting date of the hours collection of the week is: @StartDate
+            </MudText>
+            <MudText>
+                The Ending date of the hours collection of the week is: @EndDate
+            </MudText>
+
+        </MudPaper>
+    }
+
+</MudContainer>
 
 @code {
     private bool _processing;
